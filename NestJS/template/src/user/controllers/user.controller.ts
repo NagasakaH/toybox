@@ -3,7 +3,7 @@ import {UserService} from '../services/user.service';
 import {User} from 'src/entity/user.entity';
 import {CreateUserDto, UpdateUserDto} from '../dto/user.dto';
 
-@Controller('user')
+@Controller('users')
 export class UserController {
   constructor(private userService: UserService) {}
 
@@ -13,8 +13,11 @@ export class UserController {
   }
 
   @Put(':id')
-  async update(@Param('id') id, @Body() user: UpdateUserDto): Promise<User> {
-    return this.userService.update(id, user);
+  async update(
+    @Param('id') id: string,
+    @Body() user: UpdateUserDto
+  ): Promise<User> {
+    return this.userService.update(parseInt(id, 10), user);
   }
 
   @Get()

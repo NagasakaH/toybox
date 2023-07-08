@@ -1,15 +1,9 @@
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  Generated,
-  UpdateDateColumn,
-} from 'typeorm';
+import {Entity, Column, PrimaryGeneratedColumn, Generated} from 'typeorm';
 
 @Entity('users')
 export class User {
   @PrimaryGeneratedColumn()
-  @Generated('uuid')
+  @Generated('increment')
   id: number;
 
   @Column({length: 255})
@@ -18,6 +12,6 @@ export class User {
   @Column({length: 255})
   email: string;
 
-  @UpdateDateColumn({type: 'timestamp', nullable: true, default: null})
-  lastLoggedIn: number; // タイムスタンプ(UTC)
+  @Column({type: 'timestamp', nullable: true, default: null})
+  lastLoggedIn: number | null; // タイムスタンプ(UTC)
 }

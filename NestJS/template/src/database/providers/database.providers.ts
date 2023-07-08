@@ -1,5 +1,6 @@
 import {ConfigService} from '@nestjs/config';
 import {DataSource, DataSourceOptions} from 'typeorm';
+import {User} from 'src/entity/user.entity';
 
 export const databaseProviders = [
   {
@@ -13,7 +14,7 @@ export const databaseProviders = [
         username: configService.get<string>('database.username'),
         password: configService.get<string>('database.password'),
         database: configService.get<string>('database.database'),
-        entities: ['../entity/*.entity.ts'],
+        entities: ['dist/**/*.entity.{js,ts}'],
         synchronize: false, // 勝手にEntityとDBのカラムを同期してしまうので絶対にtrueにしない
         logging: configService.get<boolean>('database.logging'), // production時はoffになる
       };
