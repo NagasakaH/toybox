@@ -8,4 +8,11 @@ export default () => ({
     database: process.env.POSTGRES_DB,
     logging: process.env.NODE_ENV !== 'production',
   },
+  jwt: {
+    secret: process.env.JWT_SECRET,
+    timeout: process.env.JWT_TIMEOUT || 3600,
+  },
+  bcrypt: {
+    round: parseInt(process.env.BCRYPT_ROUND, 10) || 10,
+  },
 });
